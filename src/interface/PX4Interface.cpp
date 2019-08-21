@@ -12,6 +12,8 @@ PX4Interface::PX4Interface() :
         nh("~"),
         loop_rate(20.0)
 {
+    // TODO topic name, namespace
+
     px4_state_sub = nh.subscribe<mavros_msgs::State>
             ("/mavros/state", 1, &PX4Interface::px4_state_cb, this);
 

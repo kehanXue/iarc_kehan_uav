@@ -8,15 +8,15 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
-  mavros_msgs
-  roscpp
-  std_msgs
-  tf
-)
+        geometry_msgs
+        mavros_msgs
+        roscpp
+        std_msgs
+        tf
+        )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -105,10 +105,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES iarc_kehan_uav
- CATKIN_DEPENDS geometry_msgs mavros_msgs roscpp std_msgs tf
-#  DEPENDS system_lib
+        #  INCLUDE_DIRS include
+        #  LIBRARIES iarc_kehan_uav
+        CATKIN_DEPENDS geometry_msgs mavros_msgs roscpp std_msgs tf
+        #  DEPENDS system_lib
 )
 
 ###########
@@ -118,8 +118,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+        # include
+        ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -139,8 +139,16 @@ add_executable(iarc_kehan_uav_node
         src/iarc_kehan_uav_node.cpp
         src/interface/PX4Interface.h
         src/interface/PX4Interface.cpp
+        src/interface/LocalplannerInterface.cpp
+        src/interface/LocalplannerInterface.h
         src/controller/PIDController.h
         src/controller/PIDController.cpp
+        src/controller/Action.h
+        src/controller/Action.cpp
+        src/controller/Task.h
+        src/controller/Task.cpp
+        src/controller/FlowController.h
+        src/controller/FlowController.cpp
         src/utils/JudgeAchieveCounter.h
         src/utils/JudgeAchieveCounter.cpp
         src/utils/utils.h
@@ -158,8 +166,8 @@ add_executable(iarc_kehan_uav_node
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(iarc_kehan_uav_node
-  ${catkin_LIBRARIES}
-)
+        ${catkin_LIBRARIES}
+        )
 
 #############
 ## Install ##
