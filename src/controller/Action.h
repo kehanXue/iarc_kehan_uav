@@ -2,32 +2,32 @@
 // Created by kehan on 19-7-27.
 //
 
-#ifndef FIRA_ESI_ACTION_H_
-#define FIRA_ESI_ACTION_H_
+
+#ifndef IARC_KEHAN_UAV_ACTION_H_
+#define IARC_KEHAN_UAV_ACTION_H_
 
 
 #include <cmath>
 #include <tf/transform_listener.h>
 #include <geometry_msgs/PointStamped.h>
-#include "interface/DynamicRecfgInterface.h"
 #include "interface/PX4Interface.h"
+#include "interface/DynamicRecfgInterface.h"
+#include "interface/LocalplannerInterface.h"
 #include "controller/PIDController.h"
 #include "utils/utils.h"
 
 namespace vwpp
 {
 
-
     enum ActionID
     {
-        TRACKINGLINE = 0,
-        ADJUSTALTITUDE,
+        ADJUSTALTITUDE = 0,
         HOVERING,
         ROTATION,
-        OPENCLAW,
         CYCLEMOVING,
-        GOTOPOSE,
-        GOTOPOSITION            // Go to position hold yaw
+        MOVETOHOLDYAW,
+        MOVETO,
+        PLANTO
     };
 
     struct DroneVelocity
@@ -36,45 +36,6 @@ namespace vwpp
         double_t y;
         double_t z;
         double_t yaw;
-    };
-
-
-    class ActionBase
-    {
-    public:
-        ActionBase();
-
-        virtual ~ActionBase();
-
-        ActionID action_id;
-
-    private:
-
-    };
-
-    class ActionTrackingLine
-    {
-    public:
-
-        explicit ActionTrackingLine(double_t _target_altitude);
-
-        virtual ~ActionTrackingLine();
-
-        ActionID getActionID();
-
-        TargetVelXYPosZYaw calculateVelocity(double_t _cur_line_v_y, double_t _cur_v_yaw,
-                                             double_t _forward_vel = vwpp::DynamicRecfgInterface::getInstance()->getForwardVel());
-
-
-
-    private:
-
-        double_t target_altitude;
-
-        // TODO ptr
-        tf::TransformListener odom_base_tf_listener;
-
-        ActionID action_id;
     };
 
 
@@ -88,9 +49,9 @@ namespace vwpp
 
         ActionID getActionId() const;
 
-        TargetPosXYZYaw calculateVelocity(double_t _target_altitude);
+        int8_t calculateMotion(double_t _target_altitude);
 
-        DroneVelocity calculateVelocity(double_t _target_altitude, double_t _cur_altitude);
+        int8_t calculateMotion(double_t _target_altitude, double_t _cur_altitude);
 
         int8_t setAdjustAltitudeXYYaw(double_t _on_x, double_t _on_y, double_t _on_yaw);
 
@@ -115,7 +76,7 @@ namespace vwpp
 
         ActionID getActionId() const;
 
-        TargetVelXYPosZYaw calculateVelocity(double_t _cur_v_x, double_t _cur_v_y);
+        int8_t calculateMotion(double_t _cur_v_x, double_t _cur_v_y);
 
         int8_t resetTargetYaw(double_t _target_yaw);
 
@@ -139,9 +100,9 @@ namespace vwpp
 
         ActionID getActionId() const;
 
-        TargetPosXYZYaw calculateVelocity(double_t _target_yaw);
+        int8_t calculateMotion(double_t _target_yaw);
 
-        DroneVelocity calculateVelocity(double_t _target_yaw, double_t _cur_yaw);
+        int8_t calculateMotion(double_t _target_yaw, double_t _cur_yaw);
 
         int8_t resetRotatingOnXY(double_t _hover_x, double_t _hover_y);
 
@@ -170,8 +131,8 @@ namespace vwpp
 
         ActionID getActionId() const;
 
-        TargetVelXYYawPosZ
-        calculateVelocity(double_t _target_altitude, double_t _target_radius, double_t _truth_radius);
+        int8_t
+        calculateMotion(double_t _target_altitude, double_t _target_radius, double_t _truth_radius);
 
     private:
 
@@ -182,20 +143,20 @@ namespace vwpp
     };
 
 
-    class ActionGoToLocalPositionHoldYaw
+    class ActionMoveToHoldYaw
     {
     public:
 
-        ActionGoToLocalPositionHoldYaw();
+        ActionMoveToHoldYaw();
 
-        virtual ~ActionGoToLocalPositionHoldYaw();
+        virtual ~ActionMoveToHoldYaw();
 
         ActionID getActionId() const;
 
-        TargetPosXYZYaw calculateVelocity(geometry_msgs::Point _target_local_point);
+        int8_t calculateMotion(geometry_msgs::Point _target_local_point);
 
-        TargetVelXYPosZYaw
-        calculateVelocity(TargetPosXYZYaw _target_local_target_by_vel);      // TODO another action class
+        int8_t
+        calculateMotion(TargetPosXYZYaw _target_local_target_by_vel);      // TODO another action class
 
         int8_t resetTargetYaw(double_t _new_target_yaw);
 
@@ -205,6 +166,40 @@ namespace vwpp
         double_t target_yaw;
 
     };
+
+    class ActionMoveTo
+    {
+    public:
+
+        ActionMoveTo();
+
+        virtual ~ActionMoveTo();
+
+        ActionID getActionId() const;
+
+        static int8_t calculateMotion(const geometry_msgs::PoseStamped &_target_local_pose);
+
+    private:
+
+        ActionID action_id;
+    };
+
+    class ActionPlanTo
+    {
+    public:
+        ActionPlanTo();
+
+        virtual ~ActionPlanTo();
+
+        ActionID getActionId() const;
+
+        static int8_t calculateMotion(geometry_msgs::Point _target_point);
+
+    private:
+
+        ActionID action_id;
+    };
+
 }
 
-#endif //FIRA_ESI_ACTION_H_
+#endif //IARC_KEHAN_UAV_ACTION_H_

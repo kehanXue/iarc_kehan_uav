@@ -2,8 +2,8 @@
 // Created by kehan on 19-7-17.
 //
 
-#ifndef FIRA_ESI_PX4INTERFACE_H_
-#define FIRA_ESI_PX4INTERFACE_H_
+#ifndef IARC_KEHAN_UAV_PX4INTERFACE_H_
+#define IARC_KEHAN_UAV_PX4INTERFACE_H_
 
 
 
@@ -127,5 +127,5 @@ namespace vwpp
 
 
 
-#endif //FIRA_ESI_PX4INTERFACE_H_
+#endif //IARC_KEHAN_UAV_PX4INTERFACE_H_
 

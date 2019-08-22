@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         std_msgs
         tf
+        dynamic_reconfigure
         )
 
 ## System dependencies are found with CMake's conventions
@@ -90,10 +91,9 @@ find_package(Boost REQUIRED COMPONENTS system)
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+generate_dynamic_reconfigure_options(
+        cfg/iarc_kehan_uav_dynamic_cfg.cfg
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -107,7 +107,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 catkin_package(
         #  INCLUDE_DIRS include
         #  LIBRARIES iarc_kehan_uav
-        CATKIN_DEPENDS geometry_msgs mavros_msgs roscpp std_msgs tf
+        CATKIN_DEPENDS geometry_msgs mavros_msgs roscpp std_msgs tf dynamic_reconfigure
         #  DEPENDS system_lib
 )
 
@@ -120,6 +120,8 @@ catkin_package(
 include_directories(
         # include
         ${catkin_INCLUDE_DIRS}
+        src
+        ../../devel/include
 )
 
 ## Declare a C++ library
@@ -141,14 +143,12 @@ add_executable(iarc_kehan_uav_node
         src/interface/PX4Interface.cpp
         src/interface/LocalplannerInterface.cpp
         src/interface/LocalplannerInterface.h
+        src/interface/DynamicRecfgInterface.h
+        src/interface/DynamicRecfgInterface.cpp
         src/controller/PIDController.h
         src/controller/PIDController.cpp
         src/controller/Action.h
         src/controller/Action.cpp
-        src/controller/Task.h
-        src/controller/Task.cpp
-        src/controller/FlowController.h
-        src/controller/FlowController.cpp
         src/utils/JudgeAchieveCounter.h
         src/utils/JudgeAchieveCounter.cpp
         src/utils/utils.h
@@ -162,7 +162,7 @@ add_executable(iarc_kehan_uav_node
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(iarc_kehan_uav_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(iarc_kehan_uav_node
