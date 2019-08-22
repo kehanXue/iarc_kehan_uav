@@ -138,17 +138,23 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(iarc_kehan_uav_node
+
         src/iarc_kehan_uav_node.cpp
+
         src/interface/PX4Interface.h
         src/interface/PX4Interface.cpp
         src/interface/LocalplannerInterface.cpp
         src/interface/LocalplannerInterface.h
         src/interface/DynamicRecfgInterface.h
         src/interface/DynamicRecfgInterface.cpp
+        src/interface/VoiceInterface.cpp
+        src/interface/VoiceInterface.h
+
         src/controller/PIDController.h
         src/controller/PIDController.cpp
         src/controller/Action.h
         src/controller/Action.cpp
+
         src/utils/JudgeAchieveCounter.h
         src/utils/JudgeAchieveCounter.cpp
         src/utils/utils.h
