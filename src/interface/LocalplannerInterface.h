@@ -10,6 +10,7 @@
 #include <ros/ros.h>
 
 #include "interface/PX4Interface.h"
+#include "utils/utils.h"
 
 namespace vwpp
 {

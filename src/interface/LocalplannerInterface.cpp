@@ -3,6 +3,7 @@
 //
 
 #include "LocalplannerInterface.h"
+#include "DynamicRecfgInterface.h"
 
 
 vwpp::LocalplannerInterface::LocalplannerInterface() :
@@ -76,6 +77,25 @@ int8_t vwpp::LocalplannerInterface::cancelAction()
 int8_t vwpp::LocalplannerInterface::publishGoalPoseSmooth(const geometry_msgs::PoseStamped &_goal_pose)
 {
 
+    geometry_msgs::PoseStamped cur_pose =
+            PX4Interface::getInstance()->getCurPose();
+
+    // The vector between goal pose and current pose
+    tf::Vector3 vector_3_goal_cur = toTfVector3(subTwoPoint(_goal_pose.pose.position, cur_pose.pose.position));
+
+    double_t length_threshold =
+            vwpp::DynamicRecfgInterface::getInstance()->getGoalPositionSmoothLength();
+    double_t smoothed_goal_cur_distance =
+            vector_3_goal_cur.length() < length_threshold ? vector_3_goal_cur.length() : length_threshold;
+    vector_3_goal_cur.normalize();
+    vector_3_goal_cur *= smoothed_goal_cur_distance;
+
+    geometry_msgs::PoseStamped smoothed_goal_pose;
+    smoothed_goal_pose.pose.position.x = cur_pose.pose.position.x + vector_3_goal_cur.getX();
+    smoothed_goal_pose.pose.position.y = cur_pose.pose.position.y + vector_3_goal_cur.getY();
+    smoothed_goal_pose.pose.position.z = cur_pose.pose.position.z + vector_3_goal_cur.getZ();
+
+    goal_pose_pub.publish(smoothed_goal_pose);
 
     return 0;
 }

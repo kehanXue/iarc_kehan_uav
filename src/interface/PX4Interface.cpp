@@ -328,3 +328,11 @@ int8_t PX4Interface::publishTarget(const TargetPosXYZVelYaw _target_pos_xyz_vel_
 }
 
 
+geometry_msgs::PoseStamped PX4Interface::getCurPose()
+{
+    return this->px4_cur_pose;
+}
+
+
+
+

@@ -74,6 +74,8 @@ namespace vwpp
 
         double_t getCurZ();
 
+        geometry_msgs::PoseStamped getCurPose();
+
         int8_t publishSetpointVel(const geometry_msgs::Twist &_vel);
 
         int8_t publishSetpointPose(const geometry_msgs::PoseStamped &_pose);
