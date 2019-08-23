@@ -9,6 +9,8 @@
 #include <boost/thread.hpp>
 #include <ros/ros.h>
 
+#include "interface/PX4Interface.h"
+
 namespace vwpp
 {
     class LocalplannerInterface
@@ -20,6 +22,10 @@ namespace vwpp
         virtual ~LocalplannerInterface();
 
         int8_t publishGoalPose(const geometry_msgs::PoseStamped &_goal_pose);
+
+        int8_t publishGoalPoseSmooth(const geometry_msgs::PoseStamped &_goal_pose);
+
+        int8_t cancelAction();
 
     private:
         LocalplannerInterface();

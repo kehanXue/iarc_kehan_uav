@@ -75,6 +75,7 @@ void
 vwpp::DynamicRecfgInterface::reconfig_cb(iarc_kehan_uav::iarc_kehan_uav_dynamic_cfgConfig &_config, uint32_t _level)
 {
     this->forward_vel = _config.forward_vel;
+    this->goal_position_smooth_length = _config.goal_position_smooth_length;
 
     this->normal_flight_altitude = _config.normal_flight_altitude;
     this->landing_altitude = _config.landing_altitude;
@@ -527,6 +528,12 @@ const std::string &vwpp::DynamicRecfgInterface::getLocalFrameId() const
 const std::string &vwpp::DynamicRecfgInterface::getBodyFrameId() const
 {
     return body_frame_id;
+}
+
+
+double_t vwpp::DynamicRecfgInterface::getGoalPositionSmoothLength() const
+{
+    return goal_position_smooth_length;
 }
 
 

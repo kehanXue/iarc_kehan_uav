@@ -46,6 +46,9 @@ namespace vwpp
         /* UAV move forward's velocity */
         double_t forward_vel{};
 
+        /* Goal position smooth when use local_planner */
+        double_t goal_position_smooth_length{};
+
         /* The altitude when UAV taking normal flight */
         double_t normal_flight_altitude{};
 
@@ -152,6 +155,8 @@ namespace vwpp
 
     public:
         double_t getForwardVel() const;
+
+        double_t getGoalPositionSmoothLength() const;
 
         double_t getNormalFlightAltitude() const;
 

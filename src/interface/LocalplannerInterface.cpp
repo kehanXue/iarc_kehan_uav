@@ -60,5 +60,23 @@ int8_t vwpp::LocalplannerInterface::publishGoalPose(const geometry_msgs::PoseSta
 }
 
 
+int8_t vwpp::LocalplannerInterface::cancelAction()
+{
+    geometry_msgs::PoseStamped target_pose;
+    target_pose.pose.position.x = vwpp::PX4Interface::getInstance()->getCurX();
+    target_pose.pose.position.y = vwpp::PX4Interface::getInstance()->getCurY();
+    target_pose.pose.position.z = vwpp::PX4Interface::getInstance()->getCurZ();
 
+    goal_pose_pub.publish(target_pose);
+
+    return 0;
+}
+
+
+int8_t vwpp::LocalplannerInterface::publishGoalPoseSmooth(const geometry_msgs::PoseStamped &_goal_pose)
+{
+
+
+    return 0;
+}
 

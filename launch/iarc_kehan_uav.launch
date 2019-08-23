@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<launch>
+    <node pkg="iarc_kehan_uav"
+          name="iarc_kehan_uav_node"
+          type="iarc_kehan_uav_node"
+          output="screen"
+          required="true">
+    </node>
+
+    <node pkg="voice_pub"
+          name="voice_publish"
+          type="voice_publish"
+          output="screen">
+    </node>
+
+    <node pkg="dynamic_reconfigure"
+          name="dynparam"
+          type="dynparam"
+          args="load iarc_kehan_uav_node $(find iarc_kehan_uav)/param/controller.yaml">
+
+    </node>
+
+    <!--    <node pkg="rqt_reconfigure"-->
+    <!--          name="rqt_reconfigure"-->
+    <!--          type="rqt_reconfigure">-->
+    <!--    </node>-->
+
+</launch>

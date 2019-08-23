@@ -16,8 +16,8 @@ namespace vwpp
 
     enum VoiceCommand
     {
-        DEFAULT,
-        TAKEOFF
+        VOICE_DEFAULT,
+        VOICE_TAKEOFF
     };
 
     class VoiceInterface
@@ -27,7 +27,7 @@ namespace vwpp
 
         virtual ~VoiceInterface();
 
-        static int8_t update();
+        int8_t update();
 
         VoiceCommand getCurVoiceCommand() const;
 

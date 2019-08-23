@@ -154,11 +154,16 @@ add_executable(iarc_kehan_uav_node
         src/controller/PIDController.cpp
         src/controller/Action.h
         src/controller/Action.cpp
+        src/controller/Task.h
+        src/controller/Task.cpp
+        src/controller/FlowController.cpp
+        src/controller/FlowController.h
 
         src/utils/JudgeAchieveCounter.h
         src/utils/JudgeAchieveCounter.cpp
         src/utils/utils.h
         src/utils/utils.cpp)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

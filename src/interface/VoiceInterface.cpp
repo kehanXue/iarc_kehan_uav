@@ -7,8 +7,8 @@
 
 vwpp::VoiceInterface::VoiceInterface() :
         nh("~"),
-        cur_voice_command(DEFAULT),
-        last_voice_command(DEFAULT),
+        cur_voice_command(VOICE_DEFAULT),
+        last_voice_command(VOICE_DEFAULT),
         voiceCommandHasChanged(false)
 {
     // TODO topic name
@@ -73,11 +73,12 @@ int8_t vwpp::VoiceInterface::update()
 void vwpp::VoiceInterface::voice_command_cb(const std_msgs::Int8::ConstPtr &msg)
 {
     // TODO
+    ROS_INFO("Voice data: %d", msg->data);
     if (msg->data != 0)
     {
-        if (msg->data == 5)
+        if (msg->data == 01)
         {
-            cur_voice_command = TAKEOFF;
+            cur_voice_command = VOICE_TAKEOFF;
         }
 
 
