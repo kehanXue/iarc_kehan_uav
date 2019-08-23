@@ -24,6 +24,7 @@ namespace vwpp
 
         int8_t publishGoalPose(const geometry_msgs::PoseStamped &_goal_pose);
 
+        // TODO !Have problems
         int8_t publishGoalPoseSmooth(const geometry_msgs::PoseStamped &_goal_pose);
 
         int8_t cancelAction();
@@ -40,6 +41,7 @@ namespace vwpp
 
         ros::NodeHandle nh;
         ros::Publisher goal_pose_pub;
+
     };
 }
 

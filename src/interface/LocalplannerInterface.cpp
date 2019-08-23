@@ -11,7 +11,7 @@ vwpp::LocalplannerInterface::LocalplannerInterface() :
 {
     // TODO
     goal_pose_pub = nh.advertise<geometry_msgs::PoseStamped>
-            ("/move_base/simple/goal", 1);
+            ("/move_base_simple/goal", 1);
 }
 
 

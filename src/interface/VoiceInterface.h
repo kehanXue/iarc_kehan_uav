@@ -17,7 +17,14 @@ namespace vwpp
     enum VoiceCommand
     {
         VOICE_DEFAULT,
-        VOICE_TAKEOFF
+        VOICE_TAKEOFF,
+        VOICE_FORWARD,
+        VOICE_BACKWARD,
+        VOICE_UP,
+        VOICE_DOWN,
+        VOICE_STOP,
+        VOICE_LANDING,
+        VOICE_CHANGE            // TODO
     };
 
     class VoiceInterface

@@ -37,6 +37,9 @@ namespace vwpp
 
         FlowState cur_flow_state;
 
+        geometry_msgs::PoseStamped global_goal_pose;
+
+        bool flag_run_to_global_pose;
     };
 }
 

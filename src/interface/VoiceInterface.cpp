@@ -78,7 +78,28 @@ void vwpp::VoiceInterface::voice_command_cb(const std_msgs::Int8::ConstPtr &msg)
     {
         if (msg->data == 01)
         {
+            ROS_ERROR("Voice takeoff");
             cur_voice_command = VOICE_TAKEOFF;
+        }
+        else if (msg->data == 04)
+        {
+            ROS_ERROR("Voice forward");
+            cur_voice_command = VOICE_FORWARD;
+        }
+        else if (msg->data == 05)
+        {
+            ROS_ERROR("Voice backward");
+            cur_voice_command = VOICE_BACKWARD;
+        }
+        else if (msg->data == 10)
+        {
+            ROS_ERROR("Voice cancel");
+            cur_voice_command = VOICE_STOP;
+        }
+        else if (msg->data == 02)
+        {
+            ROS_ERROR("Voice change");
+            cur_voice_command = VOICE_CHANGE;
         }
 
 

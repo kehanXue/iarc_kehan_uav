@@ -164,7 +164,6 @@ add_executable(iarc_kehan_uav_node
         src/utils/utils.h
         src/utils/utils.cpp)
 
-
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
