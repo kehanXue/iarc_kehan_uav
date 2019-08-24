@@ -7,11 +7,11 @@
           required="true">
     </node>
 
-    <node pkg="voice_pub"
+    <!-- node pkg="voice_pub"
           name="voice_publish"
           type="voice_publish"
           output="screen">
-    </node>
+    </node -->
 
     <node pkg="dynamic_reconfigure"
           name="dynparam"

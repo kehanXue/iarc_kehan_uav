@@ -188,6 +188,46 @@ void vwpp::VoiceInterface::voice_command_cb(const std_msgs::Int8::ConstPtr &msg)
         }
         else if (msg->data == 52)
         {
+            ROS_ERROR("Voice up 1");
+            cur_voice_command = VOICE_UP_1;
+        }
+        else if (msg->data == 53)
+        {
+            ROS_ERROR("Voice up 2");
+            cur_voice_command = VOICE_UP_2;
+        }
+        else if (msg->data == 61)
+        {
+            ROS_ERROR("Voice down 0.5");
+            cur_voice_command = VOICE_DOWN_0_5;
+        }
+        else if (msg->data == 62)
+        {
+            ROS_ERROR("Voice down 1");
+            cur_voice_command = VOICE_DOWN_1;
+        }
+        else if (msg->data == 63)
+        {
+            ROS_ERROR("Voice down 1.5");
+            cur_voice_command = VOICE_DOWN_1_5;
+        }
+        else if (msg->data == 64)
+        {
+            ROS_ERROR("Voice down 2");
+            cur_voice_command = VOICE_DOWN_2;
+        }
+        else if (msg->data == 71)
+        {
+            ROS_ERROR("Voice stop");
+            cur_voice_command = VOICE_STOP;
+        }
+        else if (msg->data == 81)
+        {
+            ROS_ERROR("Voice landing");
+            cur_voice_command = VOICE_LANDING;
+        }
+        else if (msg->data == 91)
+        {
             ROS_ERROR("Voice change");
             cur_voice_command = VOICE_CHANGE;
         }
