@@ -17,14 +17,37 @@ namespace vwpp
     enum VoiceCommand
     {
         VOICE_DEFAULT,
-        VOICE_TAKEOFF,
-        VOICE_FORWARD,
-        VOICE_BACKWARD,
-        VOICE_UP,
-        VOICE_DOWN,
-        VOICE_STOP,
-        VOICE_LANDING,
-        VOICE_CHANGE            // TODO
+        VOICE_TAKEOFF,          // 01
+        VOICE_FORWARD_0_5,      // 11
+        VOICE_FORWARD_1,        // 12
+        VOICE_FORWARD_2,        // 13
+        VOICE_FORWARD_3,        // 14
+        VOICE_FORWARD_5,        // 15
+        VOICE_BACKWARD_0_5,     // 21
+        VOICE_BACKWARD_1,       // 22
+        VOICE_BACKWARD_2,       // 23
+        VOICE_BACKWARD_3,       // 24
+        VOICE_BACKWARD_5,       // 25
+        VOICE_LEFT_0_5,         // 31
+        VOICE_LEFT_1,           // 32
+        VOICE_LEFT_2,           // 33
+        VOICE_LEFT_3,           // 34
+        VOICE_LEFT_5,           // 35
+        VOICE_RIGHT_0_5,        // 41
+        VOICE_RIGHT_1,          // 42
+        VOICE_RIGHT_2,          // 43
+        VOICE_RIGHT_3,          // 44
+        VOICE_RIGHT_5,          // 45
+        VOICE_UP_0_5,           // 51
+        VOICE_UP_1,             // 52
+        VOICE_UP_2,             // 53
+        VOICE_DOWN_0_5,         // 61
+        VOICE_DOWN_1,           // 62
+        VOICE_DOWN_1_5,         // 63
+        VOICE_DOWN_2,           // 64
+        VOICE_STOP,             // 71
+        VOICE_LANDING,          // 81
+        VOICE_CHANGE            // 91
     };
 
     class VoiceInterface
